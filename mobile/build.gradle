@@ -1,0 +1,30 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.ataulm.spert"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile project(":core")
+
+    def supportVersion = '23.3.0'
+    compile "com.android.support:appcompat-v7:${supportVersion}"
+    compile "com.android.support:support-v13:${supportVersion}"
+    compile "com.android.support:recyclerview-v7:${supportVersion}"
+    compile "com.android.support:design:${supportVersion}"
+}
