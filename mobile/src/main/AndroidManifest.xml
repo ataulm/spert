@@ -1,17 +1,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.ataulm.spert">
 
+  <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+  <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
   <application
     android:allowBackup="true"
     android:label="@string/app_name"
     android:icon="@drawable/ic_launcher"
     android:theme="@style/AppTheme">
 
-    <activity android:name="com.ataulm.spert.MyActivity" />
+    <activity android:name=".MyActivity" />
 
     <activity-alias
       android:name="activity.primary_launcher"
-      android:targetActivity="com.ataulm.spert.MyActivity">
+      android:targetActivity=".MyActivity">
 
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -19,6 +24,17 @@
       </intent-filter>
 
     </activity-alias>
+
+    <service
+      android:name=".auth.AccountService"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="android.accounts.AccountAuthenticator" />
+      </intent-filter>
+      <meta-data
+        android:name="android.accounts.AccountAuthenticator"
+        android:resource="@xml/spotify_authenticator" />
+    </service>
 
   </application>
 

@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+def spotifyApiKey = hasProperty('spotifyApiKey') ? spotifyApiKey : 'provide this in gradle.properties'
+def spotifyApiSecret = hasProperty('spotifyApiSecret') ? spotifyApiSecret : 'provide this in gradle.properties'
+
 android {
     compileSdkVersion 23
     buildToolsVersion "22.0.1"
@@ -10,6 +13,14 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
+        Calendar instance = Calendar.getInstance()
+        instance.setTimeInMillis(System.currentTimeMillis())
+        def buildTime = instance.getTime()
+        buildConfigField "String", "BUILD_TIME", "\"$buildTime\""
+        buildConfigField "String", "SPOTIFY_API_KEY", "\"$spotifyApiKey\""
+        buildConfigField "String", "SPOTIFY_API_SECRET", "\"$spotifyApiSecret\""
+        buildConfigField "String", "SPOTIFY_REDIRECT_URI", "\"http://com.ataulm.spert.spotify\""
     }
     buildTypes {
         release {
