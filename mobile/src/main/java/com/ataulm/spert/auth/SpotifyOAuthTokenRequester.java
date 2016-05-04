@@ -26,7 +26,7 @@ class SpotifyOAuthTokenRequester {
                 try {
                     MediaType textMediaType = MediaType.parse("application/x-www-form-urlencoded");
                     Request request = new Request.Builder()
-                            .url("https://api-v2launch.trakt.tv/oauth/token")
+                            .url("https://accounts.spotify.com/api/token")
                             .post(RequestBody.create(textMediaType, buildTokenRequestBody(grantType, token)))
                             .build();
 

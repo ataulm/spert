@@ -10,16 +10,16 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.ataulm.spert.BuildConfig;
-import com.ataulm.spert.OAuthSignInActivity;
 
 import rx.functions.Func1;
 
 public class SpertAuthenticator extends SimpleAbstractAccountAuthenticator {
 
-    private static final Uri AUTH_URI = Uri.parse("https://api-v2launch.trakt.tv/oauth/authorize" +
+    private static final Uri AUTH_URI = Uri.parse("https://accounts.spotify.com/authorize" +
                                                           "?response_type=code" +
                                                           "&client_id=" + BuildConfig.SPOTIFY_API_KEY +
-                                                          "&redirect_uri=" + BuildConfig.SPOTIFY_REDIRECT_URI);
+                                                          "&redirect_uri=" + BuildConfig.SPOTIFY_REDIRECT_URI +
+                                                          "&scope=user-follow-read"); // see https://developer.spotify.com/web-api/using-scopes/
 
     private final Context context;
     private final SpertAccountManager accountManager;

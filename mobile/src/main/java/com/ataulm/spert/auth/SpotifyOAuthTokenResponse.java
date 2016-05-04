@@ -1,5 +1,9 @@
 package com.ataulm.spert.auth;
 
+import android.os.SystemClock;
+
+import java.util.concurrent.TimeUnit;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,7 +20,7 @@ public final class SpotifyOAuthTokenResponse {
         String accessToken = getString(response, "access_token");
         String refreshToken = getString(response, "refresh_token");
         long expiresIn = getLong(response, "expires_in");
-        long createdDate = getLong(response, "created_at");
+        long createdDate = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
 
         return new SpotifyOAuthTokenResponse(accessToken, createdDate, expiresIn, refreshToken);
     }
